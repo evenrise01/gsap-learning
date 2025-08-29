@@ -1,24 +1,16 @@
-import React from 'react'
-import BeginnerTasks from './components/fade-stagger-slide-animation'
-import HoverCard from './components/hover-animation'
-import BouncingCircle from './components/looping-animation'
-import ScrollFadeImage from './components/scroll-triggered-fade'
-import TimelineAnimation from './components/timeline-animation'
-import ToggleBox from './components/animate-based-on-state'
-import GridStagger from './components/stagger-grid-animation'
+import Link from "next/link";
 
 const page = () => {
   return (
-    <main className='flex flex-col gap-[100px]'>
-      <BeginnerTasks/>
-      <HoverCard/>
-      <BouncingCircle/>
-      <ScrollFadeImage/>
-      <TimelineAnimation/>
-      <ToggleBox/>
-      <GridStagger/>
+    <main className="min-h-screen flex flex-col gap-[100px] items-center justify-center">
+      <div className="flex items-center justify-center">
+        <Link className="font-mono text-2xl" href="/basic-animations">
+          Basic Tasks
+        </Link>
+        {/* <Link>Intermediate Tasks</Link> */}
+      </div>
     </main>
-  )
-}
+  );
+};
 
-export default page
+export default page;
