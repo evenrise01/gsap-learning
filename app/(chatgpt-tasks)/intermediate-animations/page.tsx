@@ -1,5 +1,5 @@
 import React from 'react'
-import HeroReveal from '../components/intermediate-tasks/hero-section-reveal'
+import HeroReveal from '../../components/intermediate-tasks/hero-section-reveal'
 
 
 const page = () => {
