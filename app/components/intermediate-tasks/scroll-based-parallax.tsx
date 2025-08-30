@@ -8,9 +8,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ParallaxScroll() {
   useGSAP(() => {
-    // Clouds move slow
+    // Clouds - barely moving
     gsap.to("#clouds", {
-      yPercent: 40,
+      yPercent: -20,
       ease: "none",
       scrollTrigger: {
         trigger: "#parallax",
@@ -20,9 +20,9 @@ export default function ParallaxScroll() {
       },
     });
 
-    // Mountains move medium
+    // Mountains
     gsap.to("#mountains", {
-      yPercent: 20,
+      yPercent: -15,
       ease: "none",
       scrollTrigger: {
         trigger: "#parallax",
@@ -32,9 +32,9 @@ export default function ParallaxScroll() {
       },
     });
 
-    // Foreground moves faster
+    // Foreground
     gsap.to("#foreground", {
-      yPercent: 10,
+      yPercent: -10,
       ease: "none",
       scrollTrigger: {
         trigger: "#parallax",
@@ -44,9 +44,9 @@ export default function ParallaxScroll() {
       },
     });
 
-    // Text floats slightly
+    // Title
     gsap.to("#title", {
-      yPercent: -30,
+      yPercent: -8,
       ease: "none",
       scrollTrigger: {
         trigger: "#parallax",
@@ -58,35 +58,80 @@ export default function ParallaxScroll() {
   }, []);
 
   return (
-    <main
-      id="parallax"
-      className="relative h-[200vh] bg-blue-200 overflow-hidden"
-    >
-      {/* Clouds */}
-      <div
-        id="clouds"
-        className="absolute inset-0 bg-[url('https://i.ibb.co/zsY1t3k/clouds.png')] bg-cover bg-center"
-      ></div>
+    <>
+      {/* Content before parallax section */}
+      <div className="h-screen bg-gray-900 flex items-center justify-center">
+        <h2 className="text-4xl text-white font-bold">
+          Scroll down to see parallax effect
+        </h2>
+      </div>
 
-      {/* Mountains */}
-      <div
-        id="mountains"
-        className="absolute inset-0 bg-[url('https://i.ibb.co/Fw9jhnk/mountains.png')] bg-cover bg-bottom"
-      ></div>
+      <main id="parallax" className="relative h-[200vh] overflow-hidden">
+        {/* Sky background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-400 via-blue-300 to-blue-200"></div>
 
-      {/* Foreground */}
-      <div
-        id="foreground"
-        className="absolute inset-0 bg-[url('https://i.ibb.co/bWKX2R9/foreground.png')] bg-cover bg-bottom"
-      ></div>
+        {/* Clouds layer - furthest back */}
+        <div
+          id="clouds"
+          className="absolute inset-0 z-10"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1569428034239-f9565e32e224?q=80&w=1179&auto=format&fit=crop')",
+            backgroundSize: "cover",
+            backgroundPosition: "center top",
+            backgroundRepeat: "no-repeat",
+            opacity: 0.7,
+          }}
+        ></div>
 
-      {/* Title */}
-      <h1
-        id="title"
-        className="relative z-10 pt-40 text-center text-6xl font-bold text-white drop-shadow-lg"
-      >
-        Task 11: Parallax Scroll
-      </h1>
-    </main>
+        {/* Mountains layer - middle */}
+        <div
+          id="mountains"
+          className="absolute inset-0 z-20"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1472791108553-c9405341e398?q=80&w=1237&auto=format&fit=crop')",
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+            backgroundRepeat: "no-repeat",
+            clipPath: "polygon(0 40%, 100% 30%, 100% 100%, 0% 100%)",
+          }}
+        ></div>
+
+        {/* Foreground hills - closest */}
+        <div
+          id="foreground"
+          className="absolute inset-0 z-30"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1170&auto=format&fit=crop')",
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+            backgroundRepeat: "no-repeat",
+            clipPath: "polygon(0 70%, 100% 60%, 100% 100%, 0% 100%)",
+          }}
+        ></div>
+
+        {/* Title */}
+        <div className="absolute inset-0 z-40 flex items-center justify-center">
+          <h1
+            id="title"
+            className="text-6xl md:text-8xl font-bold text-white drop-shadow-2xl text-center px-4"
+            style={{
+              textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
+            }}
+          >
+            Parallax Scroll
+          </h1>
+        </div>
+      </main>
+
+      {/* Content after parallax section */}
+      <div className="h-screen bg-gray-800 flex items-center justify-center">
+        <h2 className="text-4xl text-white font-bold">
+          Continue scrolling for more content
+        </h2>
+      </div>
+    </>
   );
 }
